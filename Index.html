@@ -1,0 +1,1516 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Frankvin – Modular Kitchens & Wardrobes | Custom Design</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --red: #C8102E;
+    --red-dark: #9B0B22;
+    --red-light: #FF1F42;
+    --black: #0A0A0A;
+    --black-2: #141414;
+    --black-3: #1E1E1E;
+    --white: #FFFFFF;
+    --white-2: #F5F5F5;
+    --gray: #888;
+    --border: rgba(255,255,255,0.08);
+    --ff-display: 'Playfair Display', serif;
+    --ff-body: 'DM Sans', sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--ff-body);
+    background: var(--black);
+    color: var(--white);
+    overflow-x: hidden;
+    line-height: 1.6;
+  }
+
+  /* ── NOISE TEXTURE OVERLAY ── */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 1000;
+    opacity: 0.4;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 900;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.2rem 5%;
+    background: rgba(10,10,10,0.85);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border);
+    transition: all 0.3s;
+  }
+
+  .logo {
+    font-family: var(--ff-display);
+    font-size: 1.7rem;
+    font-weight: 900;
+    letter-spacing: -0.02em;
+    color: var(--white);
+    text-decoration: none;
+  }
+
+  .logo span { color: var(--red); }
+
+  nav ul {
+    list-style: none;
+    display: flex;
+    gap: 2rem;
+  }
+
+  nav ul a {
+    color: rgba(255,255,255,0.7);
+    text-decoration: none;
+    font-size: 0.88rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+
+  nav ul a:hover { color: var(--red); }
+
+  .nav-cta {
+    background: var(--red);
+    color: var(--white) !important;
+    padding: 0.55rem 1.4rem;
+    border-radius: 2px;
+    transition: background 0.2s !important;
+  }
+
+  .nav-cta:hover { background: var(--red-dark) !important; color: var(--white) !important; }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    padding: 8rem 5% 5rem;
+    gap: 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::after {
+    content: '';
+    position: absolute;
+    right: -200px; top: -200px;
+    width: 700px; height: 700px;
+    background: radial-gradient(circle, rgba(200,16,46,0.18) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero-tag {
+    display: inline-block;
+    background: rgba(200,16,46,0.15);
+    border: 1px solid rgba(200,16,46,0.4);
+    color: var(--red);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 0.4rem 1rem;
+    border-radius: 2px;
+    margin-bottom: 1.5rem;
+    animation: fadeUp 0.6s ease both;
+  }
+
+  .hero h1 {
+    font-family: var(--ff-display);
+    font-size: clamp(2.8rem, 5vw, 4.5rem);
+    font-weight: 900;
+    line-height: 1.08;
+    letter-spacing: -0.03em;
+    margin-bottom: 1.5rem;
+    animation: fadeUp 0.7s ease 0.1s both;
+  }
+
+  .hero h1 em {
+    font-style: italic;
+    color: var(--red);
+  }
+
+  .hero-sub {
+    font-size: 1.1rem;
+    color: rgba(255,255,255,0.6);
+    max-width: 480px;
+    margin-bottom: 2.5rem;
+    font-weight: 300;
+    animation: fadeUp 0.7s ease 0.2s both;
+  }
+
+  .hero-btns {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    animation: fadeUp 0.7s ease 0.3s both;
+  }
+
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--red);
+    color: var(--white);
+    padding: 1rem 2.2rem;
+    font-family: var(--ff-body);
+    font-size: 0.95rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background 0.25s, transform 0.2s, box-shadow 0.25s;
+    border-radius: 2px;
+  }
+
+  .btn-primary:hover {
+    background: var(--red-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 32px rgba(200,16,46,0.35);
+  }
+
+  .btn-ghost {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: transparent;
+    color: var(--white);
+    padding: 1rem 2.2rem;
+    font-family: var(--ff-body);
+    font-size: 0.95rem;
+    font-weight: 600;
+    border: 1px solid rgba(255,255,255,0.2);
+    cursor: pointer;
+    text-decoration: none;
+    transition: border-color 0.25s, color 0.25s, transform 0.2s;
+    border-radius: 2px;
+  }
+
+  .btn-ghost:hover {
+    border-color: var(--red);
+    color: var(--red);
+    transform: translateY(-2px);
+  }
+
+  /* Hero Visual */
+  .hero-visual {
+    position: relative;
+    animation: fadeUp 0.9s ease 0.15s both;
+  }
+
+  .hero-img-wrap {
+    width: 100%;
+    aspect-ratio: 4/3;
+    border-radius: 4px;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .hero-img-wrap::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(200,16,46,0.15) 0%, transparent 60%);
+    z-index: 1;
+  }
+
+  .hero-kitchen-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  /* SVG Kitchen Illustration fallback */
+  .kitchen-svg-wrap {
+    width: 100%;
+    aspect-ratio: 4/3;
+    border-radius: 4px;
+    overflow: hidden;
+    position: relative;
+    background: var(--black-3);
+    border: 1px solid var(--border);
+  }
+
+  .hero-badge {
+    position: absolute;
+    bottom: -1.5rem; left: -1.5rem;
+    background: var(--red);
+    color: var(--white);
+    padding: 1.2rem 1.5rem;
+    border-radius: 4px;
+    box-shadow: 0 16px 40px rgba(200,16,46,0.35);
+    z-index: 2;
+  }
+
+  .hero-badge strong {
+    display: block;
+    font-family: var(--ff-display);
+    font-size: 2.2rem;
+    font-weight: 900;
+    line-height: 1;
+  }
+
+  .hero-badge span {
+    font-size: 0.78rem;
+    opacity: 0.85;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  /* ── URGENCY TIMER ── */
+  .timer-bar {
+    background: var(--red);
+    padding: 0.9rem 5%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+  }
+
+  .timer-text {
+    font-size: 0.88rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  .timer-counts {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .timer-unit {
+    background: rgba(0,0,0,0.3);
+    border-radius: 3px;
+    padding: 0.3rem 0.7rem;
+    text-align: center;
+    min-width: 50px;
+  }
+
+  .timer-unit .num {
+    display: block;
+    font-family: var(--ff-display);
+    font-size: 1.4rem;
+    font-weight: 700;
+    line-height: 1;
+  }
+
+  .timer-unit .lbl {
+    display: block;
+    font-size: 0.6rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    opacity: 0.75;
+    margin-top: 2px;
+  }
+
+  .timer-sep {
+    font-size: 1.4rem;
+    font-weight: 700;
+    opacity: 0.7;
+  }
+
+  /* ── BENEFITS ── */
+  .benefits {
+    padding: 6rem 5%;
+    background: var(--black-2);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .section-label {
+    text-align: center;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--red);
+    margin-bottom: 1rem;
+  }
+
+  .section-title {
+    font-family: var(--ff-display);
+    font-size: clamp(2rem, 3.5vw, 3rem);
+    font-weight: 700;
+    text-align: center;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    margin-bottom: 4rem;
+  }
+
+  .section-title em { color: var(--red); font-style: italic; }
+
+  .benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .benefit-card {
+    background: var(--black-3);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 2.5rem 2rem;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
+    cursor: default;
+  }
+
+  .benefit-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: var(--red);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s ease;
+  }
+
+  .benefit-card:hover {
+    transform: translateY(-6px);
+    border-color: rgba(200,16,46,0.3);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+  }
+
+  .benefit-card:hover::before { transform: scaleX(1); }
+
+  .benefit-icon {
+    width: 52px; height: 52px;
+    border-radius: 3px;
+    background: rgba(200,16,46,0.12);
+    border: 1px solid rgba(200,16,46,0.25);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+    font-size: 1.5rem;
+    transition: background 0.3s;
+  }
+
+  .benefit-card:hover .benefit-icon {
+    background: rgba(200,16,46,0.22);
+  }
+
+  .benefit-card h3 {
+    font-family: var(--ff-display);
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+    letter-spacing: -0.01em;
+  }
+
+  .benefit-card p {
+    color: rgba(255,255,255,0.55);
+    font-size: 0.92rem;
+    line-height: 1.65;
+  }
+
+  /* ── SOCIAL PROOF ── */
+  .social-proof {
+    padding: 6rem 5%;
+  }
+
+  .reviews-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    max-width: 1100px;
+    margin: 0 auto 4rem;
+  }
+
+  .review-card {
+    background: var(--black-2);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 2rem;
+    transition: transform 0.3s, border-color 0.3s;
+  }
+
+  .review-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(200,16,46,0.25);
+  }
+
+  .stars {
+    color: var(--red);
+    font-size: 1rem;
+    letter-spacing: 2px;
+    margin-bottom: 1rem;
+  }
+
+  .review-text {
+    font-size: 0.93rem;
+    color: rgba(255,255,255,0.7);
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+    font-style: italic;
+  }
+
+  .reviewer {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+  }
+
+  .reviewer-avatar {
+    width: 40px; height: 40px;
+    border-radius: 50%;
+    background: var(--red);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--ff-display);
+    font-weight: 700;
+    font-size: 1rem;
+    flex-shrink: 0;
+  }
+
+  .reviewer-info strong {
+    display: block;
+    font-size: 0.9rem;
+    font-weight: 600;
+  }
+
+  .reviewer-info span {
+    font-size: 0.78rem;
+    color: var(--gray);
+  }
+
+  /* Stats row */
+  .stats-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    max-width: 900px;
+    margin: 0 auto;
+    overflow: hidden;
+  }
+
+  .stat {
+    background: var(--black-2);
+    padding: 2rem;
+    text-align: center;
+  }
+
+  .stat-num {
+    font-family: var(--ff-display);
+    font-size: 2.5rem;
+    font-weight: 900;
+    color: var(--red);
+    line-height: 1;
+    margin-bottom: 0.3rem;
+  }
+
+  .stat-label {
+    font-size: 0.8rem;
+    color: rgba(255,255,255,0.5);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  /* ── LEAD FORM ── */
+  .lead-form-section {
+    padding: 6rem 5%;
+    background: var(--black-2);
+    border-top: 1px solid var(--border);
+  }
+
+  .form-wrap {
+    max-width: 900px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+  }
+
+  .form-left h2 {
+    font-family: var(--ff-display);
+    font-size: clamp(2rem, 3vw, 2.8rem);
+    font-weight: 900;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    margin-bottom: 1rem;
+  }
+
+  .form-left h2 em { color: var(--red); font-style: italic; }
+
+  .form-left p {
+    color: rgba(255,255,255,0.55);
+    font-size: 0.95rem;
+    line-height: 1.65;
+    margin-bottom: 2rem;
+  }
+
+  .form-perks {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+  }
+
+  .form-perks li {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    font-size: 0.9rem;
+    color: rgba(255,255,255,0.7);
+  }
+
+  .form-perks li::before {
+    content: '✓';
+    color: var(--red);
+    font-weight: 700;
+    font-size: 1rem;
+    flex-shrink: 0;
+  }
+
+  form {
+    background: var(--black-3);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 2.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+  }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+
+  label {
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    color: rgba(255,255,255,0.55);
+  }
+
+  input, select, textarea {
+    background: var(--black-2);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 2px;
+    color: var(--white);
+    font-family: var(--ff-body);
+    font-size: 0.95rem;
+    padding: 0.85rem 1rem;
+    outline: none;
+    transition: border-color 0.25s, box-shadow 0.25s;
+    -webkit-appearance: none;
+    appearance: none;
+  }
+
+  input:focus, select:focus, textarea:focus {
+    border-color: var(--red);
+    box-shadow: 0 0 0 3px rgba(200,16,46,0.15);
+  }
+
+  textarea { resize: vertical; min-height: 90px; }
+
+  select option { background: var(--black-3); }
+
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+
+  .submit-btn {
+    background: var(--red);
+    color: var(--white);
+    border: none;
+    padding: 1.1rem;
+    font-family: var(--ff-body);
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    cursor: pointer;
+    border-radius: 2px;
+    transition: background 0.25s, transform 0.2s, box-shadow 0.25s;
+    margin-top: 0.5rem;
+  }
+
+  .submit-btn:hover {
+    background: var(--red-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(200,16,46,0.4);
+  }
+
+  .form-note {
+    text-align: center;
+    font-size: 0.75rem;
+    color: rgba(255,255,255,0.35);
+  }
+
+  /* ── TRUST BADGES ── */
+  .trust-section {
+    padding: 4rem 5%;
+    border-top: 1px solid var(--border);
+  }
+
+  .trust-inner {
+    max-width: 900px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+    align-items: center;
+    justify-items: center;
+  }
+
+  .trust-badge {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    text-align: center;
+    padding: 1.5rem 1rem;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    width: 100%;
+    transition: border-color 0.3s, transform 0.3s;
+  }
+
+  .trust-badge:hover {
+    border-color: rgba(200,16,46,0.3);
+    transform: translateY(-3px);
+  }
+
+  .trust-icon { font-size: 2rem; }
+
+  .trust-badge strong {
+    font-size: 0.82rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  .trust-badge span {
+    font-size: 0.72rem;
+    color: var(--gray);
+  }
+
+  /* ── FAQ ── */
+  .faq-section {
+    padding: 6rem 5%;
+    background: var(--black-2);
+    border-top: 1px solid var(--border);
+  }
+
+  .faq-list {
+    max-width: 760px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+
+  .faq-item {
+    border-bottom: 1px solid var(--border);
+  }
+
+  .faq-item:last-child { border-bottom: none; }
+
+  .faq-q {
+    width: 100%;
+    background: none;
+    border: none;
+    color: var(--white);
+    font-family: var(--ff-body);
+    font-size: 1rem;
+    font-weight: 600;
+    text-align: left;
+    padding: 1.5rem 2rem;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    transition: color 0.2s, background 0.2s;
+  }
+
+  .faq-q:hover { background: rgba(255,255,255,0.03); }
+
+  .faq-q.open { color: var(--red); }
+
+  .faq-icon {
+    width: 26px; height: 26px;
+    border-radius: 50%;
+    border: 1px solid rgba(255,255,255,0.15);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.2rem;
+    font-weight: 300;
+    flex-shrink: 0;
+    transition: background 0.2s, border-color 0.2s, transform 0.35s;
+  }
+
+  .faq-q.open .faq-icon {
+    background: var(--red);
+    border-color: var(--red);
+    transform: rotate(45deg);
+  }
+
+  .faq-a {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease, padding 0.3s;
+    padding: 0 2rem;
+  }
+
+  .faq-a.open {
+    max-height: 300px;
+    padding: 0 2rem 1.5rem;
+  }
+
+  .faq-a p {
+    color: rgba(255,255,255,0.55);
+    font-size: 0.93rem;
+    line-height: 1.7;
+  }
+
+  /* ── FINAL CTA ── */
+  .final-cta {
+    padding: 8rem 5%;
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+  }
+
+  .final-cta::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at center, rgba(200,16,46,0.15) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .final-cta-inner {
+    position: relative;
+    max-width: 700px;
+    margin: 0 auto;
+  }
+
+  .final-cta h2 {
+    font-family: var(--ff-display);
+    font-size: clamp(2.5rem, 4vw, 4rem);
+    font-weight: 900;
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+    margin-bottom: 1.2rem;
+  }
+
+  .final-cta h2 em { color: var(--red); font-style: italic; }
+
+  .final-cta p {
+    color: rgba(255,255,255,0.55);
+    font-size: 1.05rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .cta-group {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--black-2);
+    border-top: 1px solid var(--border);
+    padding: 2rem 5%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  footer p {
+    font-size: 0.8rem;
+    color: var(--gray);
+  }
+
+  footer a {
+    color: var(--gray);
+    text-decoration: none;
+    font-size: 0.8rem;
+    transition: color 0.2s;
+  }
+
+  footer a:hover { color: var(--red); }
+
+  .footer-links {
+    display: flex;
+    gap: 1.5rem;
+  }
+
+  /* ── SUCCESS MESSAGE ── */
+  .success-msg {
+    display: none;
+    text-align: center;
+    padding: 2rem;
+  }
+
+  .success-msg .tick {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    display: block;
+  }
+
+  .success-msg h3 {
+    font-family: var(--ff-display);
+    font-size: 1.6rem;
+    margin-bottom: 0.5rem;
+    color: #4ade80;
+  }
+
+  .success-msg p { color: rgba(255,255,255,0.6); }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: none;
+  }
+
+  /* ── HAMBURGER ── */
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: 4px;
+  }
+
+  .hamburger span {
+    display: block;
+    width: 24px; height: 2px;
+    background: var(--white);
+    transition: all 0.3s;
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    .hero { grid-template-columns: 1fr; padding-top: 7rem; }
+    .hero-visual { display: none; }
+    .benefits-grid { grid-template-columns: 1fr; }
+    .reviews-grid { grid-template-columns: 1fr; }
+    .stats-row { grid-template-columns: repeat(2, 1fr); }
+    .form-wrap { grid-template-columns: 1fr; gap: 2.5rem; }
+    .trust-inner { grid-template-columns: repeat(2, 1fr); }
+    .form-row { grid-template-columns: 1fr; }
+    nav ul { display: none; }
+    .hamburger { display: flex; }
+    .mobile-nav {
+      display: flex;
+      flex-direction: column;
+      position: fixed;
+      top: 65px; left: 0; right: 0;
+      background: var(--black-2);
+      border-bottom: 1px solid var(--border);
+      padding: 1.5rem 5%;
+      gap: 1.2rem;
+      z-index: 899;
+      transform: translateY(-110%);
+      transition: transform 0.35s ease;
+    }
+    .mobile-nav.open { transform: translateY(0); }
+    .mobile-nav a {
+      color: rgba(255,255,255,0.8);
+      text-decoration: none;
+      font-size: 1rem;
+      font-weight: 500;
+      padding: 0.5rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+  }
+
+  @media (max-width: 480px) {
+    .hero h1 { font-size: 2.4rem; }
+    .stats-row { grid-template-columns: repeat(2, 1fr); }
+    .trust-inner { grid-template-columns: 1fr 1fr; }
+    .hero-btns { flex-direction: column; }
+    .cta-group { flex-direction: column; align-items: center; }
+    .timer-bar { gap: 1rem; }
+    form { padding: 1.5rem; }
+  }
+
+  /* Decorative line */
+  .deco-line {
+    display: inline-block;
+    width: 40px;
+    height: 3px;
+    background: var(--red);
+    vertical-align: middle;
+    margin-right: 10px;
+  }
+
+  /* Kitchen illustration */
+  .kitchen-illust {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 380px;
+    background: linear-gradient(135deg, #1a1a1a 0%, #111 100%);
+    border-radius: 4px;
+    border: 1px solid rgba(200,16,46,0.15);
+    overflow: hidden;
+    position: relative;
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a href="#" class="logo">Frank<span>vin</span></a>
+  <ul>
+    <li><a href="#benefits">Why Us</a></li>
+    <li><a href="#reviews">Reviews</a></li>
+    <li><a href="#faq">FAQ</a></li>
+    <li><a href="#contact" class="nav-cta">Get Free Quote</a></li>
+  </ul>
+  <button class="hamburger" id="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- MOBILE NAV -->
+<div class="mobile-nav" id="mobileNav">
+  <a href="#benefits" onclick="closeMobileNav()">Why Us</a>
+  <a href="#reviews" onclick="closeMobileNav()">Reviews</a>
+  <a href="#faq" onclick="closeMobileNav()">FAQ</a>
+  <a href="#contact" onclick="closeMobileNav()">Get Free Quote</a>
+</div>
+
+<!-- URGENCY TIMER -->
+<div class="timer-bar">
+  <div class="timer-text">⚡ Limited Offer: Free 3D Design Consultation — Ends In</div>
+  <div class="timer-counts">
+    <div class="timer-unit"><span class="num" id="hours">00</span><span class="lbl">Hours</span></div>
+    <span class="timer-sep">:</span>
+    <div class="timer-unit"><span class="num" id="mins">00</span><span class="lbl">Mins</span></div>
+    <span class="timer-sep">:</span>
+    <div class="timer-unit"><span class="num" id="secs">00</span><span class="lbl">Secs</span></div>
+  </div>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-tag">India's Premium Modular Kitchen Studio</div>
+    <h1>Design Your <em>Dream Space</em> With Precision Craftsmanship</h1>
+    <p class="hero-sub">Frankvin crafts modular kitchens and wardrobes with bespoke patterns, engineered for perfection — transforming spaces into signature statements.</p>
+    <div class="hero-btns">
+      <a href="#contact" class="btn-primary">
+        Get Free Design Consultation
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+      <a href="#reviews" class="btn-ghost">View Our Work</a>
+    </div>
+  </div>
+
+  <div class="hero-visual">
+    <div class="kitchen-illust">
+      <svg width="90%" height="90%" viewBox="0 0 560 420" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- Floor -->
+        <rect x="20" y="300" width="520" height="100" fill="#1a1a1a" rx="2"/>
+        <!-- Cabinet base left -->
+        <rect x="20" y="180" width="160" height="120" fill="#2a2a2a" rx="2"/>
+        <rect x="25" y="185" width="70" height="110" fill="#1e1e1e" rx="1"/>
+        <rect x="100" y="185" width="75" height="110" fill="#1e1e1e" rx="1"/>
+        <!-- handles -->
+        <rect x="55" y="238" width="14" height="3" fill="#C8102E" rx="1"/>
+        <rect x="130" y="238" width="14" height="3" fill="#C8102E" rx="1"/>
+        <!-- Countertop left -->
+        <rect x="20" y="172" width="160" height="10" fill="#C8102E" rx="1"/>
+        <!-- Cabinet base right -->
+        <rect x="380" y="180" width="160" height="120" fill="#2a2a2a" rx="2"/>
+        <rect x="385" y="185" width="75" height="110" fill="#1e1e1e" rx="1"/>
+        <rect x="465" y="185" width="70" height="110" fill="#1e1e1e" rx="1"/>
+        <rect x="407" y="238" width="14" height="3" fill="#C8102E" rx="1"/>
+        <rect x="484" y="238" width="14" height="3" fill="#C8102E" rx="1"/>
+        <!-- Countertop right -->
+        <rect x="380" y="172" width="160" height="10" fill="#C8102E" rx="1"/>
+        <!-- Island center -->
+        <rect x="190" y="200" width="180" height="100" fill="#2a2a2a" rx="2"/>
+        <rect x="195" y="205" width="80" height="90" fill="#1e1e1e" rx="1"/>
+        <rect x="280" y="205" width="85" height="90" fill="#1e1e1e" rx="1"/>
+        <rect x="225" y="248" width="20" height="3" fill="#C8102E" rx="1"/>
+        <rect x="302" y="248" width="20" height="3" fill="#C8102E" rx="1"/>
+        <!-- Island countertop -->
+        <rect x="185" y="190" width="190" height="12" fill="#333" rx="2"/>
+        <!-- Wall cabinets -->
+        <rect x="20" y="60" width="120" height="100" fill="#2a2a2a" rx="2"/>
+        <rect x="25" y="65" width="52" height="90" fill="#1e1e1e" rx="1"/>
+        <rect x="83" y="65" width="52" height="90" fill="#1e1e1e" rx="1"/>
+        <rect x="47" y="108" width="12" height="3" fill="#C8102E" rx="1"/>
+        <rect x="104" y="108" width="12" height="3" fill="#C8102E" rx="1"/>
+
+        <rect x="420" y="60" width="120" height="100" fill="#2a2a2a" rx="2"/>
+        <rect x="425" y="65" width="52" height="90" fill="#1e1e1e" rx="1"/>
+        <rect x="483" y="65" width="52" height="90" fill="#1e1e1e" rx="1"/>
+        <rect x="447" y="108" width="12" height="3" fill="#C8102E" rx="1"/>
+        <rect x="503" y="108" width="12" height="3" fill="#C8102E" rx="1"/>
+
+        <!-- Pendant lights -->
+        <rect x="240" y="20" width="2" height="60" fill="#444"/>
+        <ellipse cx="241" cy="85" rx="18" ry="8" fill="#C8102E" opacity="0.8"/>
+        <ellipse cx="241" cy="83" rx="12" ry="5" fill="#ff4060" opacity="0.6"/>
+
+        <rect x="310" y="20" width="2" height="60" fill="#444"/>
+        <ellipse cx="311" cy="85" rx="18" ry="8" fill="#C8102E" opacity="0.8"/>
+        <ellipse cx="311" cy="83" rx="12" ry="5" fill="#ff4060" opacity="0.6"/>
+
+        <!-- Ambient light glows -->
+        <ellipse cx="241" cy="100" rx="40" ry="20" fill="#C8102E" opacity="0.06"/>
+        <ellipse cx="311" cy="100" rx="40" ry="20" fill="#C8102E" opacity="0.06"/>
+
+        <!-- Decorative pattern lines -->
+        <path d="M20 160 H540" stroke="rgba(200,16,46,0.15)" stroke-width="1"/>
+        <path d="M20 50 H540" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
+
+        <!-- Frankvin text watermark -->
+        <text x="280" y="360" text-anchor="middle" font-family="Georgia,serif" font-size="11" fill="rgba(200,16,46,0.35)" letter-spacing="6">FRANKVIN DESIGN STUDIO</text>
+      </svg>
+    </div>
+    <div class="hero-badge">
+      <strong>500+</strong>
+      <span>Homes Transformed</span>
+    </div>
+  </div>
+</section>
+
+<!-- BENEFITS -->
+<section class="benefits" id="benefits">
+  <div class="section-label">Why Choose Frankvin</div>
+  <h2 class="section-title">Three Reasons Clients <em>Never Look Back</em></h2>
+
+  <div class="benefits-grid">
+    <div class="benefit-card reveal">
+      <div class="benefit-icon">✦</div>
+      <h3>Exclusive Custom Patterns</h3>
+      <p>Every kitchen and wardrobe we design is a unique creation. Our in-house designers craft custom patterns and textures unavailable anywhere else — your space, your signature.</p>
+    </div>
+    <div class="benefit-card reveal">
+      <div class="benefit-icon">⬡</div>
+      <h3>Precision-Engineered Fit</h3>
+      <p>We measure, model, and manufacture with millimeter-level accuracy. No gaps, no compromise. German hardware, premium board, lifetime hinges — engineered to last decades.</p>
+    </div>
+    <div class="benefit-card reveal">
+      <div class="benefit-icon">◈</div>
+      <h3>End-to-End Service</h3>
+      <p>From your first free 3D consultation to white-glove installation and post-install support — Frankvin handles everything, so you enjoy a completely stress-free experience.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SOCIAL PROOF -->
+<section class="social-proof" id="reviews">
+  <div class="section-label">Client Stories</div>
+  <h2 class="section-title">What Our Clients <em>Say</em></h2>
+
+  <div class="reviews-grid">
+    <div class="review-card reveal">
+      <div class="stars">★★★★★</div>
+      <p class="review-text">"Frankvin completely transformed my kitchen. The custom pattern on the shutters is something no one else has — I get compliments every time guests visit. Truly world-class work."</p>
+      <div class="reviewer">
+        <div class="reviewer-avatar">A</div>
+        <div class="reviewer-info">
+          <strong>Ananya Mehta</strong>
+          <span>Residential Client, Mumbai</span>
+        </div>
+      </div>
+    </div>
+    <div class="review-card reveal">
+      <div class="stars">★★★★★</div>
+      <p class="review-text">"As an interior designer, I've worked with many modular brands. Frankvin's precision and attention to detail is unmatched. My clients are always blown away by the results."</p>
+      <div class="reviewer">
+        <div class="reviewer-avatar">R</div>
+        <div class="reviewer-info">
+          <strong>Rajiv Sharma</strong>
+          <span>Interior Designer, Delhi NCR</span>
+        </div>
+      </div>
+    </div>
+    <div class="review-card reveal">
+      <div class="stars">★★★★★</div>
+      <p class="review-text">"Ordered wardrobes for our entire office. Delivered on time, installed perfectly. The custom corporate branding they incorporated into the design was genius. Highly recommend."</p>
+      <div class="reviewer">
+        <div class="reviewer-avatar">P</div>
+        <div class="reviewer-info">
+          <strong>Priya Nair</strong>
+          <span>Business Owner, Bangalore</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="stats-row reveal">
+    <div class="stat">
+      <div class="stat-num">500<span style="color:var(--red)">+</span></div>
+      <div class="stat-label">Projects Delivered</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">98<span style="font-size:1.5rem">%</span></div>
+      <div class="stat-label">Satisfaction Rate</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">10<span style="font-size:1.5rem">+</span></div>
+      <div class="stat-label">Years Experience</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">50<span style="font-size:1.5rem">+</span></div>
+      <div class="stat-label">Design Patterns</div>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST BADGES -->
+<section class="trust-section">
+  <div class="trust-inner">
+    <div class="trust-badge reveal">
+      <span class="trust-icon">🏆</span>
+      <strong>Award Winning</strong>
+      <span>Design Excellence 2024</span>
+    </div>
+    <div class="trust-badge reveal">
+      <span class="trust-icon">🔒</span>
+      <strong>10-Year Warranty</strong>
+      <span>Structure & Hardware</span>
+    </div>
+    <div class="trust-badge reveal">
+      <span class="trust-icon">🇮🇳</span>
+      <strong>Made in India</strong>
+      <span>Premium Craftsmanship</span>
+    </div>
+    <div class="trust-badge reveal">
+      <span class="trust-icon">✓</span>
+      <strong>ISO Certified</strong>
+      <span>Quality Assured</span>
+    </div>
+  </div>
+</section>
+
+<!-- LEAD FORM -->
+<section class="lead-form-section" id="contact">
+  <div class="section-label">Get Started</div>
+  <div class="form-wrap">
+    <div class="form-left reveal">
+      <h2>Claim Your <em>Free</em> 3D Design Consultation</h2>
+      <p>Tell us about your space and our design experts will create a stunning 3D visualization of your dream kitchen or wardrobe — completely free, no obligation.</p>
+      <ul class="form-perks">
+        <li>Personalized 3D design mockup</li>
+        <li>Accurate price estimate</li>
+        <li>Material & finish samples sent home</li>
+        <li>No sales pressure, ever</li>
+      </ul>
+    </div>
+
+    <div class="reveal">
+      <form id="leadForm" novalidate>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="fname">First Name</label>
+            <input type="text" id="fname" name="fname" placeholder="Ananya" required>
+          </div>
+          <div class="form-group">
+            <label for="lname">Last Name</label>
+            <input type="text" id="lname" name="lname" placeholder="Mehta" required>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="phone">Phone Number</label>
+          <input type="tel" id="phone" name="phone" placeholder="+91 98765 43210" required>
+        </div>
+        <div class="form-group">
+          <label for="email">Email Address</label>
+          <input type="email" id="email" name="email" placeholder="ananya@email.com" required>
+        </div>
+        <div class="form-group">
+          <label for="interest">I'm Interested In</label>
+          <select id="interest" name="interest">
+            <option value="">Select a product...</option>
+            <option value="kitchen">Modular Kitchen</option>
+            <option value="wardrobe">Wardrobe</option>
+            <option value="both">Kitchen + Wardrobe</option>
+            <option value="office">Office / Commercial</option>
+            <option value="other">Other / Custom</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="city">Your City</label>
+          <input type="text" id="city" name="city" placeholder="Mumbai, Delhi, Bangalore...">
+        </div>
+        <div class="form-group">
+          <label for="msg">Additional Details (Optional)</label>
+          <textarea id="msg" name="msg" placeholder="Tell us about your space, requirements, or any specific design ideas..."></textarea>
+        </div>
+        <button type="submit" class="submit-btn">
+          Get My Free 3D Design Now →
+        </button>
+        <p class="form-note">🔒 Your information is 100% secure. We never share your data.</p>
+      </form>
+      <div class="success-msg" id="successMsg">
+        <span class="tick">🎉</span>
+        <h3>You're All Set!</h3>
+        <p>Our design team will contact you within 24 hours to schedule your free 3D consultation. Check your email for confirmation.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq-section" id="faq">
+  <div class="section-label">Common Questions</div>
+  <h2 class="section-title" style="margin-bottom:3rem">Frequently Asked <em>Questions</em></h2>
+
+  <div class="faq-list">
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFAQ(this)">
+        How long does it take to design and install a modular kitchen?
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-a">
+        <p>The design phase takes 3–7 days, during which you'll receive your personalized 3D mockup and quotation. Manufacturing takes 2–4 weeks after approval. Installation typically takes 3–5 days depending on the size and complexity of your kitchen.</p>
+      </div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFAQ(this)">
+        What materials does Frankvin use?
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-a">
+        <p>We use premium grade MR/BWR ply for cabinets, European EGGER laminate for shutters, and exclusively import hardware from Hettich, Blum, and Hafele. Our countertops include Quartz, Corian, and natural stone options based on your preference and budget.</p>
+      </div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFAQ(this)">
+        Can I customize the design patterns and finishes?
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-a">
+        <p>Absolutely — that's our specialty. Frankvin offers over 50 unique proprietary patterns alongside hundreds of standard finishes. Our designers will work with you to create a look that's completely personal to you. No two Frankvin kitchens are identical.</p>
+      </div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFAQ(this)">
+        Do you serve B2B clients like builders and interior designers?
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-a">
+        <p>Yes! We have a dedicated B2B program with special pricing tiers, dedicated project managers, and bulk order capabilities. Many of India's leading interior designers and real estate developers partner with Frankvin for their projects.</p>
+      </div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFAQ(this)">
+        What warranty do you offer?
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-a">
+        <p>We provide a 10-year structural warranty on all our modular products and a 5-year warranty on hardware. Our post-installation support team is available to handle any concerns within 24 hours of raising a service request.</p>
+      </div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFAQ(this)">
+        Is the 3D design consultation really free?
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-a">
+        <p>Yes, completely free with zero obligation. Our designers will visit your space, take measurements, and create a full 3D visualization of your kitchen or wardrobe. You only proceed if you love the design and are happy with the pricing.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="final-cta">
+  <div class="final-cta-inner">
+    <div class="section-label">Don't Wait</div>
+    <h2>Transform Your Space <em>Today</em></h2>
+    <p>Limited slots available for free 3D consultations this month. Book yours before they fill up.</p>
+    <div class="cta-group">
+      <a href="#contact" class="btn-primary">
+        Book Free Consultation
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+      <a href="tel:+919876543210" class="btn-ghost">
+        📞 Call Us Now
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <a href="#" class="logo" style="font-size:1.2rem">Frank<span style="color:var(--red)">vin</span></a>
+  <p>© 2025 Frankvin. All rights reserved. Premium Modular Kitchens & Wardrobes.</p>
+  <div class="footer-links">
+    <a href="#">Privacy</a>
+    <a href="#">Terms</a>
+    <a href="#">Contact</a>
+  </div>
+</footer>
+
+<script>
+  /* ── COUNTDOWN TIMER ── */
+  (function() {
+    // Set end time: 47h from now
+    const key = 'fv_timer_end';
+    let end = localStorage.getItem(key);
+    if (!end || Date.now() > +end) {
+      end = Date.now() + (47 * 3600 + 23 * 60 + 59) * 1000;
+      localStorage.setItem(key, end);
+    }
+
+    function pad(n) { return String(n).padStart(2,'0'); }
+
+    function tick() {
+      const diff = Math.max(0, end - Date.now());
+      const h = Math.floor(diff / 3600000);
+      const m = Math.floor((diff % 3600000) / 60000);
+      const s = Math.floor((diff % 60000) / 1000);
+      document.getElementById('hours').textContent = pad(h);
+      document.getElementById('mins').textContent = pad(m);
+      document.getElementById('secs').textContent = pad(s);
+    }
+    tick();
+    setInterval(tick, 1000);
+  })();
+
+  /* ── SCROLL REVEAL ── */
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('visible'), i * 80);
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  reveals.forEach(r => observer.observe(r));
+
+  /* ── NAV SCROLL ── */
+  window.addEventListener('scroll', () => {
+    const nav = document.getElementById('navbar');
+    if (window.scrollY > 60) {
+      nav.style.padding = '0.8rem 5%';
+      nav.style.background = 'rgba(10,10,10,0.97)';
+    } else {
+      nav.style.padding = '1.2rem 5%';
+      nav.style.background = 'rgba(10,10,10,0.85)';
+    }
+  });
+
+  /* ── HAMBURGER ── */
+  document.getElementById('hamburger').addEventListener('click', () => {
+    document.getElementById('mobileNav').classList.toggle('open');
+  });
+
+  function closeMobileNav() {
+    document.getElementById('mobileNav').classList.remove('open');
+  }
+
+  /* ── FAQ ACCORDION ── */
+  function toggleFAQ(btn) {
+    const allBtns = document.querySelectorAll('.faq-q');
+    const allAnswers = document.querySelectorAll('.faq-a');
+    const answer = btn.nextElementSibling;
+    const isOpen = answer.classList.contains('open');
+
+    allBtns.forEach(b => b.classList.remove('open'));
+    allAnswers.forEach(a => a.classList.remove('open'));
+
+    if (!isOpen) {
+      btn.classList.add('open');
+      answer.classList.add('open');
+    }
+  }
+
+  /* ── FORM SUBMIT ── */
+  document.getElementById('leadForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const fname = document.getElementById('fname').value.trim();
+    const phone = document.getElementById('phone').value.trim();
+    const email = document.getElementById('email').value.trim();
+
+    if (!fname || !phone || !email) {
+      // Highlight empty fields
+      [document.getElementById('fname'), document.getElementById('phone'), document.getElementById('email')].forEach(f => {
+        if (!f.value.trim()) {
+          f.style.borderColor = '#C8102E';
+          f.addEventListener('input', () => f.style.borderColor = '', {once: true});
+        }
+      });
+      return;
+    }
+
+    this.style.display = 'none';
+    document.getElementById('successMsg').style.display = 'block';
+
+    // Animate success
+    document.getElementById('successMsg').style.animation = 'fadeUp 0.5s ease both';
+  });
+
+  /* ── SMOOTH SCROLL ── */
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', function(e) {
+      const target = document.querySelector(this.getAttribute('href'));
+      if (target) {
+        e.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  });
+</script>
+</body>
+</html>
